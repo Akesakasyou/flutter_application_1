@@ -1,1 +1,17 @@
-あ
+1ページ目 - FirstPage.dart
+
+タイトル「iPhone Wallpaper」が大きく表示される
+
+ボタン「NEXT」を押すと、SecondPage へ遷移
+
+2ページ目 - SecondPage.dart
+目的: おすすめの壁紙を表示
+内容:
+
+3ページ目 - ThirdPage.dart
+目的: 選択した壁紙を表示
+
+内容:選択した壁紙に設定するしないのプロンプトンが表示される。
+
+
+画面を左上の「キャンセル」ボタンで SecondPage.dart に戻れる
