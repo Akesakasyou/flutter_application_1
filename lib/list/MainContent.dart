@@ -4,17 +4,18 @@ import 'package:flutter/material.dart';
 class MainContent extends StatelessWidget{
 
   Function onPressed;
-  MainContent(this.onPressed);
+  MainContent(this.onPressed, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: 20,
-          child : Align(
+          child : const Align(
             alignment: Alignment.centerLeft,
             child: Padding(
+                padding: EdgeInsets.all(2),
                 child: FittedBox(
                   fit: BoxFit.contain,
                   child: Text("タイトル",
@@ -24,8 +25,7 @@ class MainContent extends StatelessWidget{
                         fontWeight: FontWeight.normal
                     ),
                   ),
-                ),
-                padding: EdgeInsets.all(2)
+                )
             ),
           )
         ),
@@ -37,8 +37,9 @@ class MainContent extends StatelessWidget{
         ),
         Container(
           height: 20,
-          padding: EdgeInsets.symmetric( horizontal: 5, vertical: 2),
+          padding: const EdgeInsets.symmetric( horizontal: 5, vertical: 2),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ElevatedButton(
                   onPressed: () => { onPressed() },
@@ -74,7 +75,6 @@ class MainContent extends StatelessWidget{
                 )
               )
             ],
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
           ),
         )
       ],
