@@ -10,9 +10,9 @@ class MainContent extends StatelessWidget{
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 20,
-          child : const Align(
+          child : Align(
             alignment: Alignment.centerLeft,
             child: Padding(
                 padding: EdgeInsets.all(2),
@@ -43,25 +43,25 @@ class MainContent extends StatelessWidget{
             children: [
               ElevatedButton(
                   onPressed: () => { onPressed() },
+                  style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all<Color>(Colors.red),
+                      foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                              side: const BorderSide(color: Colors.red)
+                          )
+                      )
+                  ),
                   child: Padding(
                       child: FittedBox(
                         fit: BoxFit.contain,
                         child: Text("詳細を見る"),
                       ),
                     padding: EdgeInsets.all(2)
-                  ),
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              side: BorderSide(color: Colors.red)
-                          )
-                      )
                   )
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(top: 5),
                 child: FittedBox(
                   fit: BoxFit.fitHeight,

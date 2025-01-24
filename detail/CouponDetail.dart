@@ -77,12 +77,12 @@ class CouponDetail extends StatelessWidget {
                                 BorderRadius.circular(5.0),
                                 side: const BorderSide(
                                     color: Colors.red)))),
-                    child: Padding(
+                    child: const Padding(
+                        padding: EdgeInsets.all(2),
                         child: FittedBox(
                           fit: BoxFit.contain,
                           child: Text("閉じる"),
-                        ),
-                        padding: EdgeInsets.all(2)))),
+                        )))),
             const Spacer(
               flex: 1,
             )

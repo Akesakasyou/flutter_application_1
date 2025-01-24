@@ -18,7 +18,7 @@ class FirstPage extends StatelessWidget{
             // （1） 指定した画面に遷移する
             Navigator.pushReplacement(context, MaterialPageRoute(
               // （2） 実際に表示するページ(ウィジェット)を指定する
-              builder: (context) => SecondPage()
+              builder: (context) => const SecondPage()
             ));
           },
         ),
