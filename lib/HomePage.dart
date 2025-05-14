@@ -1,27 +1,62 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/FirstPage.dart';
 
-
-class HomePage extends StatelessWidget{
-  const HomePage({super.key});
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("ホーム"),
+        title: Text('壁紙をお探しですか？'),
       ),
-      body: Center(
-        child: TextButton(
-          child: const Text("1ページ目に遷移する"),
-          onPressed: (){
-            // （1） 指定した画面に遷移する
-            Navigator.push(context, MaterialPageRoute(
-              // （2） 実際に表示するページ(ウィジェット)を指定する
-              builder: (context) => const FirstPage()
-            ));
-          },
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            'あなたはどのデバイスで壁紙をお探しですか？',
+            style: TextStyle(fontSize: 24),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ElevatedButton(
+                onPressed: () {
+                  // iPhoneが選択されたときの処理
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white, // 背景色を白に
+                  side: BorderSide(color: Colors.black, width: 3), // 枠線を追加
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20), // 角丸
+                  ),
+                  padding: EdgeInsets.symmetric(vertical: 100, horizontal: 30), // サイズ調整
+                ),
+                child: Text(
+                  'iPhone',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+                ),
+              ),
+              SizedBox(width: 40),
+              ElevatedButton(
+  onPressed: () {
+    // iPadが選択されたときの処理
+  },
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.white, // 背景色を白に
+    side: BorderSide(color: Colors.black, width: 3), // 枠線を追加
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20), // 角丸
+    ),
+    padding: EdgeInsets.symmetric(vertical: 80, horizontal: 100), // 横長に調整
+  ),
+  child: Text(
+    'iPad',
+    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+  ),
+),
+            ],
+          ),
+        ],
       ),
     );
   }
