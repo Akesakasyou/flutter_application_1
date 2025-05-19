@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'WallpaperListPage.dart';
+import 'iPhone_WallpaperListPage.dart';
 
 class HomePage extends StatelessWidget {
   @override
