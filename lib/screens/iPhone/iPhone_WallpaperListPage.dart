@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../model/wallpaper_model.dart';
-import '../screens/cart_page.dart';
-import '../screens/wallpaper_detail_page.dart';
-import '../provider/cart_provider.dart';
+import '../../model/wallpaper_model.dart';
+import '../cart_page.dart';
+import '../wallpaper_detail_page.dart';
+import '../../provider/cart_provider.dart';
 
 class iPhoneWallpaperListPage extends StatelessWidget {
   final List<Wallpaper> wallpapers = [
