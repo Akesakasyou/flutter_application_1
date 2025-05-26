@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '/components/common_app_bar.dart';
+import '/components/common_drawer.dart';
 import 'iPad_wallpaper_detail_page.dart';
 
 class IPadWallpaperListPage extends StatelessWidget {
@@ -19,31 +21,62 @@ class IPadWallpaperListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('iPad 壁紙'),
+        title: const Text('iPad 壁紙'),
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
       ),
-      body: ListView.builder(
-        itemCount: wallpapers.length,
-        itemBuilder: (context, index) {
-          final wallpaper = wallpapers[index];
-          return ListTile(
-            leading: Image.asset(wallpaper['image']!, width: 60, height: 60, fit: BoxFit.cover),
-            title: Text(wallpaper['title']!),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => WallpaperDetailPage(
-                    title: wallpaper['title']!,
-                    imagePath: wallpaper['image']!,
-                    description: wallpaper['description']!,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+        child: Row(
+          children: wallpapers.map((wallpaper) {
+            return Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => WallpaperDetailPage(
+                        title: wallpaper['title']!,
+                        imagePath: wallpaper['image']!,
+                        description: wallpaper['description']!,
+                      ),
+                    ),
+                  );
+                },
+                child: Card(
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ClipRRect(
+                        borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                        child: Image.asset(
+                          wallpaper['image']!,
+                          height: 300,  // 画像高さを300に増やし縦長に
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),  // 上下のパディングを増加
+                        child: Text(
+                          wallpaper['title']!,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              );
-            },
-          );
-        },
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
