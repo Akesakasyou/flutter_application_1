@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '/components/common_app_bar.dart';
+import '/components/common_drawer.dart';
 
 class WallpaperDetailPage extends StatelessWidget {
   final String title;
