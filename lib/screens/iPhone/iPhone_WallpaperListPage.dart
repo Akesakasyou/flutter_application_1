@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '/components/common_app_bar.dart';
+import '/components/common_drawer.dart';
+
 
 // CommonDrawerをここに含めています（別ファイルならimportしてください）
 class CommonDrawer extends StatelessWidget {
