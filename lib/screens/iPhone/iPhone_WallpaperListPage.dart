@@ -11,13 +11,37 @@ class IPhoneWallpaperListPage extends StatefulWidget {
 class _IPhoneWallpaperListPageState extends State<IPhoneWallpaperListPage> {
   List<Map<String, String>> wallpapers = [
     {
-      'title': '夕焼けの海',
-      'image': 'assets/sample1.jpg',
+      'title': 'STEINS;GATE',
+      'image': 'image/smartphone/STEINS;GATE.jpg',
       'description': 'iPhone向けの夕焼け壁紙です。'
     },
     {
-      'title': '宇宙空間',
-      'image': 'assets/sample2.jpg',
+      'title': '<物語シリーズ>',
+      'image': 'lib/image/smartphone/monogatari.jpg',
+      'description': 'iPhone向けの宇宙デザイン。'
+    },
+
+    {
+      'title': '薬屋のひとりごと',
+      'image': 'lib/image/smartphone/kusuriya[.jpg',
+      'description': 'iPhone向けの夕焼け壁紙です。'
+    },
+
+    {
+      'title': '宝石の国',
+      'image': 'lib/image/smartphone/houseki.jpg',
+      'description': 'iPhone向けの宇宙デザイン。'
+    },
+
+    {
+      'title': 'やがて君になる',
+      'image': 'lib/image/smartphone/Bloom into you.jpg',
+      'description': 'iPhone向けの夕焼け壁紙です。'
+    },
+
+    {
+      'title': 'ようこそ実力至上主義の教室へ',
+      'image': 'lib/image/smartphone/youjitu.jpg',
       'description': 'iPhone向けの宇宙デザイン。'
     },
     // 必要に応じて増やせます
