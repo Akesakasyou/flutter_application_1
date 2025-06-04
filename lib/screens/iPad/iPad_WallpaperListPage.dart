@@ -6,14 +6,44 @@ import 'iPad_wallpaper_detail_page.dart';
 class IPadWallpaperListPage extends StatelessWidget {
   final List<Map<String, String>> wallpapers = [
     {
-      'title': '緑の森',
+      'title': 'コードギアス',
       'image': 'assets/sample1.jpg',
       'description': 'iPad向けの癒し系壁紙です。'
     },
     {
-      'title': '夜の街並み',
+      'title': 'ゴールデンタイム',
+      'image': 'assets/sample1.jpg',
+      'description': 'iPad向けの癒し系壁紙です。'
+    },
+    {
+      'title': 'ひぐらしのなく頃に',
       'image': 'assets/sample2.jpg',
       'description': 'iPadに最適な夜景デザイン。'
+    },
+    {
+      'title': '薬屋のひとりごと',
+      'image': 'assets/sample1.jpg',
+      'description': 'iPad向けの癒し系壁紙です。'
+    },
+    {
+      'title': '<物語シリーズ>',
+      'image': 'assets/sample2.jpg',
+      'description': 'iPadに最適な夜景デザイン。'
+    },
+    {
+      'title': 'STEINS;GATE',
+      'image': 'assets/sample1.jpg',
+      'description': 'iPad向けの癒し系壁紙です。'
+    },
+    {
+      'title': 'チ。-地球の運動について-',
+      'image': 'assets/sample2.jpg',
+      'description': 'iPadに最適な夜景デザイン。'
+    },
+    {
+      'title': 'ようこそ実力至上主義の教室へ',
+      'image': 'assets/sample1.jpg',
+      'description': 'iPad向けの癒し系壁紙です。'
     },
   ];
 
@@ -26,52 +56,66 @@ class IPadWallpaperListPage extends StatelessWidget {
         foregroundColor: Colors.white,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-        child: Row(
+        padding: const EdgeInsets.all(16.0),
+        child: GridView.count(
+          crossAxisCount: 2,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
+          childAspectRatio: 0.7,
           children: wallpapers.map((wallpaper) {
-            return Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => WallpaperDetailPage(
-                        title: wallpaper['title']!,
-                        imagePath: wallpaper['image']!,
-                        description: wallpaper['description']!,
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => WallpaperDetailPage(
+                      title: wallpaper['title']!,
+                      imagePath: wallpaper['image']!,
+                      description: wallpaper['description']!,
+                    ),
+                  ),
+                );
+              },
+              child: Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    ClipRRect(
+                      borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                      child: Image.asset(
+                        wallpaper['image']!,
+                        height: 180,
+                        fit: BoxFit.cover,
                       ),
                     ),
-                  );
-                },
-                child: Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ClipRRect(
-                        borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                        child: Image.asset(
-                          wallpaper['image']!,
-                          height: 300,  // 画像高さを300に増やし縦長に
-                          fit: BoxFit.cover,
+                    const SizedBox(height: 12),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(
+                        wallpaper['title']!,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
                         ),
+                        textAlign: TextAlign.center,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),  // 上下のパディングを増加
-                        child: Text(
-                          wallpaper['title']!,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 8),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(
+                        wallpaper['description']!,
+                        style: const TextStyle(
+                          fontSize: 13,
+                          color: Colors.grey,
                         ),
+                        textAlign: TextAlign.center,
                       ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 12),
+                  ],
                 ),
               ),
             );
