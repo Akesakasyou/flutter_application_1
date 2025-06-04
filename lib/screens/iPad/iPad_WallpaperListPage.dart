@@ -91,7 +91,8 @@ class IPadWallpaperListPage extends StatelessWidget {
                     child: Image.asset(
                       wallpaper['image']!,
                       fit: BoxFit.cover,
-                      height: 200,
+                      width: 900,
+                      height: 900,
                     ),
                   ),
                   Padding(
