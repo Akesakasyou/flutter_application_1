@@ -20,30 +20,67 @@ class WallpaperDetailPage extends StatelessWidget {
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 画像
-            Center(
-              child: Image.asset(
-                imagePath,
-                height: 300,
-                fit: BoxFit.cover,
-              ),
+            // 画像表示
+            Image.asset(
+              imagePath,
+              height: 300,
+              fit: BoxFit.cover,
             ),
             const SizedBox(height: 16),
+
             // タイトル
             Text(
-              '「$title」',
+              title,
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
             ),
+            const SizedBox(height: 16),
+
+            // 画像・動画ボタン（横並び）
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('画像を表示中（仮）')),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  child: const Text('画像', style: TextStyle(color: Colors.white)),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('動画を表示中（仮）')),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  child: const Text('動画', style: TextStyle(color: Colors.white)),
+                ),
+              ],
+            ),
             const SizedBox(height: 24),
-            // カートに追加ボタン
+
+            // カートに追加
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
@@ -64,6 +101,7 @@ class WallpaperDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
+
             // 購入ボタン
             SizedBox(
               width: double.infinity,
@@ -84,7 +122,8 @@ class WallpaperDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            // かいせつボタン
+
+            // かいせつ
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
