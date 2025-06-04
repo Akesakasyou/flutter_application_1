@@ -61,37 +61,37 @@ class _IPhoneWallpaperListPageState extends State<IPhoneWallpaperListPage> {
   List<Map<String, String>> wallpapers = [
     {
       'title': 'STEINS;GATE',
-      'image': 'image/smartphone/STEINS;GATE.jpg',
+      'image': 'assets/images/smartphone/STEINS;GATE.jpg',
       'description': 'iPhone向けの夕焼け壁紙です。',
       'genre': 'アニメ',
     },
     {
       'title': '<物語シリーズ>',
-      'image': 'lib/image/smartphone/monogatari.jpg',
+      'image': 'assets/images/smartphone/monogatari.jpg',
       'description': 'iPhone向けの宇宙デザイン。',
       'genre': 'アニメ',
     },
     {
       'title': '薬屋のひとりごと',
-      'image': 'lib/image/smartphone/kusuriya[.jpg',
+      'image': 'assets/images/smartphone/kusuriya[.jpg',
       'description': 'iPhone向けの夕焼け壁紙です。',
       'genre': 'シンプル',
     },
     {
       'title': '宝石の国',
-      'image': 'lib/image/smartphone/houseki.jpg',
+      'image': 'assets/images/smartphone/houseki.jpg',
       'description': 'iPhone向けの宇宙デザイン。',
       'genre': '未来系',
     },
     {
       'title': 'やがて君になる',
-      'image': 'lib/image/smartphone/Bloom into you.jpg',
+      'image': 'assets/images/smartphone/Bloom into you.jpg',
       'description': 'iPhone向けの夕焼け壁紙です。',
       'genre': 'アーティスト',
     },
     {
       'title': 'ようこそ実力至上主義の教室へ',
-      'image': 'lib/image/smartphone/youjitu.jpg',
+      'image': 'assets/images/smartphone/youjitu.jpg',
       'description': 'iPhone向けの宇宙デザイン。',
       'genre': 'アニメ',
     },
