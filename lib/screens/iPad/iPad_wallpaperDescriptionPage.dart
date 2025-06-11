@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/components/cart_page.dart';
+import '/components/purchase_page.dart';
 
 
 class PurchasePage extends StatelessWidget {

@@ -1,70 +1,78 @@
 import 'package:flutter/material.dart';
 
 class PurchasePage extends StatelessWidget {
-  final int totalPrice;
+  final String title;
+  final String imagePath;
 
-  const PurchasePage({super.key, required this.totalPrice});
+  const PurchasePage({
+    super.key,
+    required this.title,
+    required this.imagePath, required int totalPrice,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('購入確認'),
+        title: const Text('購入ページ'),
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('合計金額: $totalPrice 円',
-                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 24),
-            const Text('購入を確定しますか？',
-                style: TextStyle(fontSize: 18)),
-            const SizedBox(height: 40),
-            ElevatedButton(
-              onPressed: () {
-                // ここで購入処理（未実装）
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: const Text('購入完了'),
-                    content: const Text('ご購入ありがとうございました。'),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context)
-                              .popUntil((route) => route.isFirst);
-                        },
-                        child: const Text('閉じる'),
-                      ),
-                    ],
-                  ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
+            Center(
+              child: Image.asset(
+                imagePath,
+                height: 250,
+                fit: BoxFit.cover,
               ),
-              child: const Text('購入確定', style: TextStyle(fontSize: 18, color: Colors.white)),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              title,
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            OutlinedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              style: OutlinedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 48),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+            const Text(
+              'この壁紙を購入しますか？',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 32),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('購入完了'),
+                      content: const Text('ご購入ありがとうございました！'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context); // ダイアログを閉じる
+                            Navigator.pop(context); // 購入ページを閉じる
+                          },
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                child: const Text(
+                  '購入を確定する',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),
-              child: const Text('戻る', style: TextStyle(fontSize: 16)),
             ),
           ],
         ),
