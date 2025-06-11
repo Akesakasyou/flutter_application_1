@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'iPad_wallpaperDescriptionPage.dart'; // 解説ページをインポート
 
 class WallpaperDetailPage extends StatelessWidget {
   final String title;
@@ -24,15 +25,12 @@ class WallpaperDetailPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // 画像表示
             Image.asset(
               imagePath,
               height: 300,
               fit: BoxFit.cover,
             ),
             const SizedBox(height: 16),
-
-            // タイトル
             Text(
               title,
               style: const TextStyle(
@@ -41,8 +39,6 @@ class WallpaperDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-
-            // 画像・動画ボタン（横並び）
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -79,8 +75,6 @@ class WallpaperDetailPage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 24),
-
-            // カートに追加
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
@@ -101,8 +95,6 @@ class WallpaperDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-
-            // 購入ボタン
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -122,23 +114,17 @@ class WallpaperDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-
-            // かいせつ
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
                 onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (_) => AlertDialog(
-                      title: const Text('かいせつ'),
-                      content: Text(description),
-                      actions: [
-                        TextButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: const Text('閉じる'),
-                        ),
-                      ],
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => WallpaperDescriptionPage(
+                        title: title,
+                        description: description,
+                      ),
                     ),
                   );
                 },
