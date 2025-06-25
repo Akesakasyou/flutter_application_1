@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'iPad_wallpaperDescriptionPage.dart'; // 解説ページをインポート
+import '/components/purcahse/guest_purchase_page.dart';
+
+
+
 
 class WallpaperDetailPage extends StatelessWidget {
   final String title;
@@ -99,8 +103,78 @@ class WallpaperDetailPage extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('購入機能は未実装です')),
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (BuildContext context) {
+                      return Dialog(
+                        backgroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: const BorderSide(color: Colors.white, width: 2),
+                        ),
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(content: Text('ログイン機能は未実装です')),
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.black,
+                                      shape: StadiumBorder(
+                                        side: BorderSide(color: Colors.white, width: 2),
+                                      ),
+                                    ),
+                                    child: const Padding(
+                                      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 32),
+                                      child: Text('ログイン', style: TextStyle(fontSize: 18, color: Colors.white)),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 20),
+                                  ElevatedButton(
+  onPressed: () {
+    Navigator.pop(context); // ダイアログ閉じる
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const GuestPurchasePage()),
+    );
+  },
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.black,
+    shape: StadiumBorder(
+      side: BorderSide(color: Colors.white, width: 2),
+    ),
+  ),
+  child: const Padding(
+    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+    child: Text('ゲスト購入', style: TextStyle(fontSize: 18, color: Colors.white)),
+  ),
+),
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                              top: 8,
+                              right: 8,
+                              child: IconButton(
+                                icon: const Icon(Icons.close, color: Colors.white),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                   );
                 },
                 style: ElevatedButton.styleFrom(
