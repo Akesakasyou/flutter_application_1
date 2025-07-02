@@ -2,7 +2,24 @@ import 'package:flutter/material.dart';
 import 'CompletionPage.dart';
 
 class ConfirmationPage extends StatelessWidget {
-  const ConfirmationPage({super.key});
+  final String name;
+  final String phone;
+  final String email;
+  final String cardNumber;
+
+  const ConfirmationPage({
+    super.key,
+    required this.name,
+    required this.phone,
+    required this.email,
+    required this.cardNumber,
+  });
+
+  String get maskedCardNumber {
+    if (cardNumber.length < 4) return cardNumber;
+    final last4 = cardNumber.substring(cardNumber.length - 4);
+    return '**** **** **** $last4';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +35,7 @@ class ConfirmationPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // ステップバー
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
@@ -35,10 +53,10 @@ class ConfirmationPage extends StatelessWidget {
             const Text('以下の情報でよろしいですか？', style: TextStyle(color: Colors.white, fontSize: 20)),
             const SizedBox(height: 24),
 
-            const Text('お名前: 山田 太郎', style: TextStyle(color: Colors.white)),
-            const Text('電話番号: 090-1234-5678', style: TextStyle(color: Colors.white)),
-            const Text('メール: taro@example.com', style: TextStyle(color: Colors.white)),
-            const Text('カード番号: **** **** **** 1234', style: TextStyle(color: Colors.white)),
+            Text('お名前: $name', style: const TextStyle(color: Colors.white)),
+            Text('電話番号: $phone', style: const TextStyle(color: Colors.white)),
+            Text('メール: $email', style: const TextStyle(color: Colors.white)),
+            Text('カード番号: $maskedCardNumber', style: const TextStyle(color: Colors.white)),
 
             const Spacer(),
 

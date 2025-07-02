@@ -1,8 +1,34 @@
 import 'package:flutter/material.dart';
 import 'ConfirmationPage.dart';
 
-class PaymentPage extends StatelessWidget {
-  const PaymentPage({super.key});
+class PaymentPage extends StatefulWidget {
+  final String name;
+  final String phone;
+  final String email;
+
+  const PaymentPage({
+    super.key,
+    required this.name,
+    required this.phone,
+    required this.email,
+  });
+
+  @override
+  State<PaymentPage> createState() => _PaymentPageState();
+}
+
+class _PaymentPageState extends State<PaymentPage> {
+  final _cardNumberController = TextEditingController();
+  final _expiryController = TextEditingController();
+  final _securityCodeController = TextEditingController();
+
+  @override
+  void dispose() {
+    _cardNumberController.dispose();
+    _expiryController.dispose();
+    _securityCodeController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +67,17 @@ class PaymentPage extends StatelessWidget {
             const SizedBox(height: 32),
             const Text('クレジットカード番号', style: TextStyle(color: Colors.white, fontSize: 18)),
             const SizedBox(height: 8),
-            TextField(decoration: textFieldDecoration),
+            TextField(controller: _cardNumberController, decoration: textFieldDecoration),
 
             const SizedBox(height: 16),
             const Text('有効期限（月/年）', style: TextStyle(color: Colors.white, fontSize: 18)),
             const SizedBox(height: 8),
-            TextField(decoration: textFieldDecoration),
+            TextField(controller: _expiryController, decoration: textFieldDecoration),
 
             const SizedBox(height: 16),
             const Text('セキュリティコード', style: TextStyle(color: Colors.white, fontSize: 18)),
             const SizedBox(height: 8),
-            TextField(decoration: textFieldDecoration),
+            TextField(controller: _securityCodeController, decoration: textFieldDecoration, obscureText: true),
 
             const Spacer(),
 
@@ -61,7 +87,14 @@ class PaymentPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ConfirmationPage()),
+                    MaterialPageRoute(
+                      builder: (context) => ConfirmationPage(
+                        name: widget.name,
+                        phone: widget.phone,
+                        email: widget.email,
+                        cardNumber: _cardNumberController.text,
+                      ),
+                    ),
                   );
                 },
                 style: ElevatedButton.styleFrom(

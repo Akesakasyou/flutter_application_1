@@ -1,11 +1,55 @@
 import 'package:flutter/material.dart';
+import 'PaymentPage.dart';
 
-class GuestPurchasePage extends StatelessWidget {
+class GuestPurchasePage extends StatefulWidget {
   const GuestPurchasePage({super.key});
 
   @override
+  State<GuestPurchasePage> createState() => _GuestPurchasePageState();
+}
+
+class _GuestPurchasePageState extends State<GuestPurchasePage> {
+  final _nameController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _emailController = TextEditingController();
+
+  void _goToNextPage(BuildContext context) {
+    final name = _nameController.text.trim();
+    final phone = _phoneController.text.trim();
+    final email = _emailController.text.trim();
+
+    if (name.isEmpty || phone.isEmpty || email.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('すべての項目を入力してください'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PaymentPage(
+          name: name,
+          phone: phone,
+          email: email,
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _phoneController.dispose();
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // テキストフィールドの共通装飾
     final textFieldDecoration = InputDecoration(
       filled: true,
       fillColor: Colors.white,
@@ -47,12 +91,16 @@ class GuestPurchasePage extends StatelessWidget {
             const SizedBox(height: 24),
             const Text('お名前', style: TextStyle(color: Colors.white, fontSize: 18)),
             const SizedBox(height: 8),
-            TextField(decoration: textFieldDecoration),
+            TextField(
+              controller: _nameController,
+              decoration: textFieldDecoration,
+            ),
 
             const SizedBox(height: 16),
             const Text('電話番号', style: TextStyle(color: Colors.white, fontSize: 18)),
             const SizedBox(height: 8),
             TextField(
+              controller: _phoneController,
               decoration: textFieldDecoration,
               keyboardType: TextInputType.phone,
             ),
@@ -61,6 +109,7 @@ class GuestPurchasePage extends StatelessWidget {
             const Text('メール', style: TextStyle(color: Colors.white, fontSize: 18)),
             const SizedBox(height: 8),
             TextField(
+              controller: _emailController,
               decoration: textFieldDecoration,
               keyboardType: TextInputType.emailAddress,
             ),
@@ -70,12 +119,7 @@ class GuestPurchasePage extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  // 次のステップへ（仮）
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('次へ（仮動作）')),
-                  );
-                },
+                onPressed: () => _goToNextPage(context),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   foregroundColor: Colors.black,
@@ -94,7 +138,6 @@ class GuestPurchasePage extends StatelessWidget {
   }
 }
 
-// ステップバーの文字ラベル用ウィジェット
 class StepLabel extends StatelessWidget {
   final String label;
   final bool isActive;
