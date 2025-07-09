@@ -3,48 +3,37 @@ import 'iPhone_wallpaper_detail_page.dart'; // スマホ用の詳細ページを
 
 class IPhoneWallpaperListPage extends StatelessWidget {
   final List<Map<String, String>> wallpapers = [
-    {
-      'title': 'コードギアス',
-      'image': 'assets/images/smartphone/STEINS;GATE.jpg',
-      'description': 'iPhone向けの癒し系壁紙です。',
-    },
-    {
-      'title': 'ゴールデンタイム',
+       {
+      'title': '<物語シリーズ>',
       'image': 'assets/images/smartphone/monogatari.jpg',
-      'description': 'iPhone向けの癒し系壁紙です。',
-    },
-    {
-      'title': 'ひぐらしのなく頃に',
-      'image': 'assets/images/smartphone/kusuriya[.jpg',
-      'description': 'iPhoneに最適な夜景デザイン。',
+      'description': 'iPhone向けの宇宙デザイン。',
+      'genre': 'アニメ',
     },
     {
       'title': '薬屋のひとりごと',
+      'image': 'assets/images/smartphone/kusuriya[.jpg',
+      'description': 'iPhone向けの夕焼け壁紙です。',
+      'genre': 'シンプル',
+    },
+    {
+      'title': '宝石の国',
       'image': 'assets/images/smartphone/houseki.jpg',
-      'description': 'iPhone向けの癒し系壁紙です。',
+      'description': 'iPhone向けの宇宙デザイン。',
+      'genre': '未来系',
     },
     {
-      'title': '<物語シリーズ>',
+      'title': 'やがて君になる',
       'image': 'assets/images/smartphone/Bloom into you.jpg',
-      'description': 'iPhoneに最適な夜景デザイン。',
-    },
-    {
-      'title': 'STEINS;GATE',
-      'image': 'assets/images/smartphone/youjitu.jpg',
-      'description': 'iPhone向けの癒し系壁紙です。',
-    },
-    {
-      'title': 'チ。-地球の運動について-',
-      'image': 'assets/images/smartphone/T_ti.jpg',
-      'description': 'iPhoneに最適な夜景デザイン。',
+      'description': 'iPhone向けの夕焼け壁紙です。',
+      'genre': 'アーティスト',
     },
     {
       'title': 'ようこそ実力至上主義の教室へ',
-      'image': 'assets/images/smartphone/T_youjitu.jpg',
-      'description': 'iPhone向けの癒し系壁紙です。',
+      'image': 'assets/images/smartphone/youjitu.jpg',
+      'description': 'iPhone向けの宇宙デザイン。',
+      'genre': 'アニメ',
     },
   ];
-
   @override
   Widget build(BuildContext context) {
     // タイトルで昇順ソート

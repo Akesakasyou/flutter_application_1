@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/components/purcahse/guest_purchase_page.dart'; // ゲスト購入ページのインポート
 
 class WallpaperDetailPage extends StatelessWidget {
   final String title;
@@ -15,7 +16,7 @@ class WallpaperDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFFDE7), // メモ帳のような背景色
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(title),
         backgroundColor: Colors.black,
@@ -25,7 +26,6 @@ class WallpaperDetailPage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            // 画像
             Center(
               child: Image.asset(
                 imagePath,
@@ -34,8 +34,6 @@ class WallpaperDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-
-            // タイトル
             Text(
               title,
               style: const TextStyle(
@@ -44,8 +42,6 @@ class WallpaperDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-
-            // 画像・動画ボタン（横並び）
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -55,8 +51,6 @@ class WallpaperDetailPage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20),
-
-            // カート追加ボタン
             _roundedFullWidthButton(
               context,
               label: 'カート追加',
@@ -68,21 +62,85 @@ class WallpaperDetailPage extends StatelessWidget {
               },
             ),
             const SizedBox(height: 16),
-
-            // 購入ボタン
             _roundedFullWidthButton(
               context,
               label: '購入',
               icon: Icons.payment,
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('購入機能は未実装です')),
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) {
+                    return Dialog(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        side: const BorderSide(color: Colors.white, width: 2),
+                      ),
+                      child: Stack(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('ログイン機能は未実装です')),
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.black,
+                                    shape: const StadiumBorder(
+                                      side: BorderSide(color: Colors.white, width: 2),
+                                    ),
+                                  ),
+                                  child: const Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 32),
+                                    child: Text('ログイン', style: TextStyle(fontSize: 18, color: Colors.white)),
+                                  ),
+                                ),
+                                const SizedBox(height: 20),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => const GuestPurchasePage()),
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.black,
+                                    shape: const StadiumBorder(
+                                      side: BorderSide(color: Colors.white, width: 2),
+                                    ),
+                                  ),
+                                  child: const Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                                    child: Text('ゲスト購入', style: TextStyle(fontSize: 18, color: Colors.white)),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Positioned(
+                            top: 8,
+                            right: 8,
+                            child: IconButton(
+                              icon: const Icon(Icons.close, color: Colors.white),
+                              onPressed: () => Navigator.of(context).pop(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 );
               },
             ),
             const SizedBox(height: 16),
-
-            // かいせつボタン
             _roundedFullWidthButton(
               context,
               label: 'かいせつ',
@@ -91,6 +149,7 @@ class WallpaperDetailPage extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (_) => AlertDialog(
+                    backgroundColor: Colors.white,
                     title: const Text('かいせつ'),
                     content: Text(description),
                     actions: [
@@ -109,7 +168,6 @@ class WallpaperDetailPage extends StatelessWidget {
     );
   }
 
-  // 小さい丸ボタン（画像・動画用）
   Widget _roundedSmallButton(BuildContext context, String label) {
     return ElevatedButton(
       onPressed: () {
@@ -126,7 +184,6 @@ class WallpaperDetailPage extends StatelessWidget {
     );
   }
 
-  // 横長の丸ボタン（カート・購入・かいせつ）
   Widget _roundedFullWidthButton(BuildContext context,
       {required String label, required IconData icon, required VoidCallback onPressed}) {
     return SizedBox(
