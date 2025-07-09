@@ -3,7 +3,7 @@ import '/components/Custom_drawer/custom_drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class GuidePage extends StatelessWidget {
-  const GuidePage({super.key, required String title, required String description});
+  const GuidePage({super.key});
 
   // 外部リンクを開く関数
   void _launchURL(String url) async {

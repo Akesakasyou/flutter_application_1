@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'iPad_wallpaperDescriptionPage.dart'; // 解説ページをインポート
 import '/components/purcahse/guest_purchase_page.dart';
 
-
-
-
 class WallpaperDetailPage extends StatelessWidget {
   final String title;
   final String imagePath;
@@ -129,7 +126,7 @@ class WallpaperDetailPage extends StatelessWidget {
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.black,
-                                      shape: StadiumBorder(
+                                      shape: const StadiumBorder(
                                         side: BorderSide(color: Colors.white, width: 2),
                                       ),
                                     ),
@@ -140,24 +137,24 @@ class WallpaperDetailPage extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 20),
                                   ElevatedButton(
-  onPressed: () {
-    Navigator.pop(context); // ダイアログ閉じる
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const GuestPurchasePage()),
-    );
-  },
-  style: ElevatedButton.styleFrom(
-    backgroundColor: Colors.black,
-    shape: StadiumBorder(
-      side: BorderSide(color: Colors.white, width: 2),
-    ),
-  ),
-  child: const Padding(
-    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-    child: Text('ゲスト購入', style: TextStyle(fontSize: 18, color: Colors.white)),
-  ),
-),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => const GuestPurchasePage()),
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.black,
+                                      shape: const StadiumBorder(
+                                        side: BorderSide(color: Colors.white, width: 2),
+                                      ),
+                                    ),
+                                    child: const Padding(
+                                      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                                      child: Text('ゲスト購入', style: TextStyle(fontSize: 18, color: Colors.white)),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -190,25 +187,27 @@ class WallpaperDetailPage extends StatelessWidget {
             const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
-              child: OutlinedButton(
+              child: ElevatedButton.icon(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => WallpaperDescriptionPage(
+                      builder: (context) => GuidePage(
                         title: title,
                         description: description,
                       ),
                     ),
                   );
                 },
-                style: OutlinedButton.styleFrom(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(40),
                   ),
                 ),
-                child: const Text('かいせつ', style: TextStyle(fontSize: 18)),
+                icon: const Icon(Icons.info_outline, color: Colors.white),
+                label: const Text('解説', style: TextStyle(fontSize: 16, color: Colors.white)),
               ),
             ),
           ],

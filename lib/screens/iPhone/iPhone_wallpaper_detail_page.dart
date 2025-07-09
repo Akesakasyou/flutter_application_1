@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '/components/purcahse/guest_purchase_page.dart'; // ゲスト購入ページのインポート
+import 'iPhone_DescriptionPage.dart' ;
+import '/components/Custom_drawer/custom_drawer.dart';
+
 
 class WallpaperDetailPage extends StatelessWidget {
   final String title;
@@ -143,22 +146,12 @@ class WallpaperDetailPage extends StatelessWidget {
             const SizedBox(height: 16),
             _roundedFullWidthButton(
               context,
-              label: 'かいせつ',
+              label: '解説',
               icon: Icons.info_outline,
               onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (_) => AlertDialog(
-                    backgroundColor: Colors.white,
-                    title: const Text('かいせつ'),
-                    content: Text(description),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: const Text('閉じる'),
-                      ),
-                    ],
-                  ),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GuidePage()),
                 );
               },
             ),

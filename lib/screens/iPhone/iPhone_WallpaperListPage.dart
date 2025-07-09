@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import '/components/Custom_drawer/custom_drawer.dart';
 import 'iPhone_wallpaper_detail_page.dart'; // スマホ用の詳細ページを想定
 
-class IPhoneWallpaperListPage extends StatelessWidget {
+class IPhoneWallpaperListPage extends StatefulWidget {
+  const IPhoneWallpaperListPage({super.key});
+
+  @override
+  State<IPhoneWallpaperListPage> createState() => _IPhoneWallpaperListPageState();
+}
+
+class _IPhoneWallpaperListPageState extends State<IPhoneWallpaperListPage> {
   final List<Map<String, String>> wallpapers = [
-       {
+    {
       'title': '<物語シリーズ>',
       'image': 'assets/images/smartphone/monogatari.jpg',
       'description': 'iPhone向けの宇宙デザイン。',
@@ -33,18 +41,91 @@ class IPhoneWallpaperListPage extends StatelessWidget {
       'description': 'iPhone向けの宇宙デザイン。',
       'genre': 'アニメ',
     },
+    {
+      'title': 'ゾンビランドサガ',
+      'image': 'assets/images/smartphone/zonbirandosaga.jpg',
+      'description': 'iPhone向けの宇宙デザイン。',
+      'genre': 'アニメ',
+    },
   ];
+
+  bool _isSearching = false;
+  String _searchQuery = '';
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  List<Map<String, String>> get filteredWallpapers {
+    if (_searchQuery.isEmpty) {
+      return wallpapers;
+    } else {
+      return wallpapers
+          .where((wallpaper) =>
+              wallpaper['title']!.toLowerCase().contains(_searchQuery.toLowerCase()))
+          .toList();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    // タイトルで昇順ソート
-    final sortedWallpapers = [...wallpapers];
+    final sortedWallpapers = [...filteredWallpapers];
     sortedWallpapers.sort((a, b) => a['title']!.compareTo(b['title']!));
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('iPhone 壁紙'),
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
+        title: _isSearching
+            ? TextField(
+                controller: _searchController,
+                autofocus: true,
+                decoration: const InputDecoration(
+                  hintText: '検索...',
+                  border: InputBorder.none,
+                  hintStyle: TextStyle(color: Colors.white54),
+                ),
+                style: const TextStyle(color: Colors.white, fontSize: 18),
+                onChanged: (value) {
+                  setState(() {
+                    _searchQuery = value;
+                  });
+                },
+              )
+            : Row(
+                children: [
+                  const Expanded(
+                    child: Text('iPhone 壁紙'),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.search),
+                    onPressed: () {
+                      setState(() {
+                        _isSearching = true;
+                      });
+                    },
+                    padding: const EdgeInsets.only(right: 0, left: 0),
+                    constraints: const BoxConstraints(),
+                  ),
+                ],
+              ),
+        actions: _isSearching
+            ? [
+                IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: () {
+                    setState(() {
+                      _isSearching = false;
+                      _searchQuery = '';
+                      _searchController.clear();
+                    });
+                  },
+                ),
+              ]
+            : null,
       ),
       body: Padding(
         padding: const EdgeInsets.all(12),
@@ -52,7 +133,7 @@ class IPhoneWallpaperListPage extends StatelessWidget {
           crossAxisCount: 2,
           mainAxisSpacing: 12,
           crossAxisSpacing: 12,
-          childAspectRatio: 0.75, // 縦長に調整
+          childAspectRatio: 0.75,
           children: sortedWallpapers.map((wallpaper) {
             return GestureDetector(
               onTap: () {
@@ -60,11 +141,10 @@ class IPhoneWallpaperListPage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (_) => WallpaperDetailPage(
-  title: wallpaper['title']!,
-  imagePath: wallpaper['image']!,
-  description: wallpaper['description']!,
-),
-
+                      title: wallpaper['title']!,
+                      imagePath: wallpaper['image']!,
+                      description: wallpaper['description']!,
+                    ),
                   ),
                 );
               },
@@ -79,11 +159,12 @@ class IPhoneWallpaperListPage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ClipRRect(
-                        borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                        borderRadius:
+                            const BorderRadius.vertical(top: Radius.circular(16)),
                         child: Image.asset(
                           wallpaper['image']!,
-                          fit: BoxFit.cover,
-                          // スマホ画面向けに高さは自動調整
+                          fit: BoxFit.contain, // ← ここを変更
+                          height: 1000,
                         ),
                       ),
                     ),
