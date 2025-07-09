@@ -39,6 +39,15 @@ class WallpaperDetailPage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            const SizedBox(height: 8), // タイトルと値段の間の余白
+            const Text(
+              '¥500',
+              style: TextStyle(
+                fontSize: 20,
+                color: Color.fromARGB(255, 0, 0, 0),
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
